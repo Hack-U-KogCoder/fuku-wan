@@ -52,6 +52,7 @@ def handle_get_reply(app):
     options = list(res.values())
     global_replies = options
     list_reply.add_options(options)
+    list_reply.focus()
 
 
 def handleButtonAutoReply(app, event) -> bool:
