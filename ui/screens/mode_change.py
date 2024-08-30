@@ -1,6 +1,6 @@
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Header
+from textual.widgets import Header, Button
 
 
 class ModeChangeScreen(Screen):
@@ -9,3 +9,18 @@ class ModeChangeScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
+        yield Button("マニュアル", id="btn-ManualMode")
+        yield Button("AI応答", id="btn-AutoReplyMode")
+
+
+def handleButtonModeChange(app, event) -> bool:
+    match event.button.id:
+        case None:
+            pass
+        case "btn-ManualMode":
+            app.switch_mode("manual_input")
+        case "btn-AutoReplyMode":
+            app.switch_mode("auto_reply")
+        case _:
+            return False
+    return True
