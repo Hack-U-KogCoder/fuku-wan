@@ -11,6 +11,8 @@ OW_WAVFILE = "output.wav"
 
 
 def talk_text(t):
+    if t == "":
+        t = "ワン！"
     open_jtalk = ["open_jtalk"]
     xdic = ["-x", X_DIC]
     mvoice = ["-m", M_VOICE]
@@ -20,7 +22,9 @@ def talk_text(t):
     cmd = open_jtalk + xdic + mvoice + rspeed + vol + owoutwav
 
     # open_jtalkコマンドの実行
-    c = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+    c = subprocess.Popen(
+        cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
     c.stdin.write(t.encode("utf-8"))
     c.stdin.close()
     c.wait()
