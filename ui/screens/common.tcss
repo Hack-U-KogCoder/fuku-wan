@@ -1,0 +1,17 @@
+Screen {
+    layout: vertical;
+    padding: 0;
+}
+#question {
+    content-align: center bottom;
+    text-style: bold;
+}
+
+#keyboard {
+    layout: grid;
+    grid-size: 3;
+}
+
+Button {
+    width: 100%;
+}
