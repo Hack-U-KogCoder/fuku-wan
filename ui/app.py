@@ -14,6 +14,8 @@ from .screens import (
     handleButtonManualInput,
     ModeChangeScreen,
     handleButtonModeChange,
+    DemoScreen,
+    handleButtonDemo,
 )
 from .screens import ModeChangeScreen
 
@@ -29,6 +31,7 @@ class MainApp(App[str]):
         "manual_input": ManualInputScreen,
         "mode_change": ModeChangeScreen,
         "auto_reply": AutoReplyScreen,
+        "demo": DemoScreen,
     }
 
     keyboardStatus = KeyboardStatus()
@@ -51,6 +54,8 @@ class MainApp(App[str]):
                 ret = handleButtonManualInput(self, event)
             case "auto_reply":
                 ret = handleButtonAutoReply(self, event)
+            case "demo":
+                ret = handleButtonDemo(self, event)
 
         if ret:
             return

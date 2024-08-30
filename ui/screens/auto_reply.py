@@ -20,9 +20,9 @@ class AutoReplyScreen(Screen):
     ]
 
     def compose(self) -> ComposeResult:
-        yield Header(show_clock=True)
+        yield Header()
         yield OptionList(*self.replies, id="list-reply")
-        yield Button("返答作成", id="btn-GetReply", variant="primary")
+        yield Button("ワン!ワン!", id="btn-GetReply", variant="primary")
         yield Button("モード選択", id="btn-ModeChange", variant="success")
 
     def on_option_list_option_selected(self, mes: OptionList.OptionSelected):

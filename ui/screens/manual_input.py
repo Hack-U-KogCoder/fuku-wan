@@ -17,9 +17,9 @@ class Keyboard(Static):
 
     def compose(self) -> ComposeResult:
         tb = inputTables.table(0)
-        yield Button("←", id="btn-Left")
-        yield Button("▶", id="btn-Play")
-        yield Button("→", id="btn-Right")
+        yield Button("＜", id="btn-Left")
+        yield Button("ワン!", id="btn-Play")
+        yield Button("＞", id="btn-Right")
         for i in range(tb.rows):
             yield Button(tb.char(i, 0), id=f"btn-{i}")
         yield Button("全削除", id="btn-Clear", variant="error")
@@ -61,7 +61,7 @@ class ManualInputScreen(Screen):
     word = ""
 
     def compose(self) -> ComposeResult:
-        yield Header(show_clock=True)
+        yield Header()
         yield Label("気持ちを伝えるワン!", id="question")
         yield AlwaysInput(id="input")
         yield Keyboard(id="keyboard")
