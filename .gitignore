@@ -164,3 +164,4 @@ cython_debug/
 # Custom
 root.py
 output.wav
+.idea/
