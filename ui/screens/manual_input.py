@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import re
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Button, Header, Footer, Label, Static
+from textual.widgets import Button, Header, Label, Static
 from .widgets import AlwaysInput
 from textual.timer import Timer
 from textual.binding import Binding
@@ -17,9 +17,9 @@ class Keyboard(Static):
 
     def compose(self) -> ComposeResult:
         tb = inputTables.table(0)
-        yield Button("←", id="btn-Left", variant="primary")
-        yield Button("▶", id="btn-Play", variant="primary")
-        yield Button("→", id="btn-Right", variant="primary")
+        yield Button("←", id="btn-Left")
+        yield Button("▶", id="btn-Play")
+        yield Button("→", id="btn-Right")
         for i in range(tb.rows):
             yield Button(tb.char(i, 0), id=f"btn-{i}")
         yield Button("全削除", id="btn-Clear", variant="error")
@@ -49,12 +49,12 @@ class KeyboardStatus:
 
 class ManualInputScreen(Screen):
     CSS_PATH = "common.tcss"
-    TITLE = "HackU"
+    TITLE = "ふくワン"
 
     BINDINGS = [
-        Binding("ctrl+k", "cursor_up", "cursor up", show=True),
-        Binding("ctrl+j", "cursor_down", "cursor down", show=True),
-        Binding("ctrl+l", "cursor_next", "cursor next", show=True),
+        Binding("ctrl+k", "cursor_up", "cursor up"),
+        Binding("ctrl+j", "cursor_down", "cursor down"),
+        Binding("ctrl+l", "cursor_next", "cursor next"),
     ]
 
     keyboardStatus = KeyboardStatus()
@@ -62,10 +62,9 @@ class ManualInputScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        yield Label("What do you want to tell?", id="question")
+        yield Label("気持ちを伝えるワン!", id="question")
         yield AlwaysInput(id="input")
         yield Keyboard(id="keyboard")
-        yield Footer()
 
     def action_cursor_up(self) -> None:
         if self.focused is not None and self.focused.id is not None:

@@ -22,6 +22,7 @@ class MainApp(App[str]):
 
     BINDINGS = [
         Binding("ctrl+c", "quit", "Quit", show=False, priority=True),
+        Binding("ctrl+g", "mode_change", "mode change", show=False),
     ]
 
     MODES = {
@@ -59,3 +60,6 @@ class MainApp(App[str]):
                 pass
             case _:
                 self.exit(f"no handle button{btn.id}")
+
+    def action_mode_change(self):
+        self.switch_mode("mode_change")
