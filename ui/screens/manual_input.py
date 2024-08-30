@@ -24,7 +24,7 @@ class Keyboard(Static):
             yield Button(tb.char(i, 0), id=f"btn-{i}")
         yield Button("全削除", id="btn-Clear", variant="error")
         yield Button("削除", id="btn-Bs", variant="warning")
-        yield Button("モード選択", id="btn-Mode", variant="success")
+        yield Button("モード", id="btn-Mode", variant="success")
 
 
 DnTable = {

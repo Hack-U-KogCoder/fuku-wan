@@ -17,7 +17,6 @@ class ModeChangeScreen(Screen):
         yield Header(show_clock=True)
         yield Button("マニュアル", id="btn-ManualMode", variant="primary")
         yield Button("AI応答", id="btn-AutoReplyMode", variant="success")
-        yield Button("終了", id="btn-Exit", variant="error")
 
     def action_cursor_up(self) -> None:
         self.focus_previous()
@@ -34,8 +33,6 @@ def handleButtonModeChange(app, event) -> bool:
             app.switch_mode("manual_input")
         case "btn-AutoReplyMode":
             app.switch_mode("auto_reply")
-        case "btn-Exit":
-            app.exit()
         case _:
             return False
     return True
