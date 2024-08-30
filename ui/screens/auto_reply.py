@@ -30,9 +30,10 @@ class AutoReplyScreen(Screen):
         text = global_replies[mes.option_index]
         talk_text(text)
         mes.option_list.clear_options()
+        self.query_one("#btn-GetReply").focus()
 
     def action_cursor_up(self) -> None:
-        if self.focused is None:
+        if self.focused.highlighted is None:
             self.focused.highlighted = 0
         elif self.focused.id == "list-reply":
             self.focused.highlighted -= 1
@@ -40,7 +41,7 @@ class AutoReplyScreen(Screen):
             self.focus_previous()
 
     def action_cursor_down(self) -> None:
-        if self.focused is not None:
+        if self.focused.highlighted is None:
             self.focused.highlighted = 0
         elif self.focused.id == "list-reply":
             self.focused.highlighted += 1
@@ -57,7 +58,6 @@ def handle_get_reply(app):
     global_replies = options
     list_reply.add_options(options)
     list_reply.focus()
-    list_reply.highlited = 0
 
 
 def handleButtonAutoReply(app, event) -> bool:
