@@ -61,7 +61,7 @@ class ManualInputScreen(Screen):
     word = ""
 
     def compose(self) -> ComposeResult:
-        yield Header()
+        yield Header(show_clock=True)
         yield Label("気持ちを伝えるワン!", id="question")
         yield AlwaysInput(id="input")
         yield Keyboard(id="keyboard")
