@@ -1,3 +1,5 @@
-nohup sudo python3 input/controller.py &
-nohup python3 input/microphone.py &
-nohup python3 main.py
+#!/bin/bash
+
+cp ./start-origin.sh ./start.sh
+echo "start.sh を作成しました"
+echo "./start.sh を実行してください"
