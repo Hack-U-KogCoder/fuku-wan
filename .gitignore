@@ -14,6 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
+lib/
 lib64/
 parts/
 sdist/
@@ -162,7 +163,3 @@ cython_debug/
 
 # Custom
 root.py
-output.wav
-audio.wav
-start.sh
-nohup.out

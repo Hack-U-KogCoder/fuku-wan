@@ -13,7 +13,6 @@ dead_zone = 0.1
 
 last_direction = "Center"
 
-
 def get_direction(x, y):
     if abs(x - center_x) < dead_zone and abs(y - center_y) < dead_zone:
         return "Center"
@@ -26,28 +25,24 @@ def get_direction(x, y):
     if y > center_y + dead_zone:
         return "Left"
 
-
 def handle_determination():
-    keyboard.press_and_release("enter")
-
+    keyboard.press_and_release('enter')
 
 def handle_function():
-    keyboard.press_and_release("ctrl+g")
-
+    keyboard.press_and_release('home')
 
 def handle_joystick_direction(direction):
     global last_direction
     if direction != last_direction:
         if direction == "Right":
-            keyboard.press_and_release("tab")
+            keyboard.press_and_release('tab')
         elif direction == "Left":
-            keyboard.press_and_release("shift+tab")
+            keyboard.press_and_release('shift+tab')
         elif direction == "Up":
-            keyboard.press_and_release("ctrl+k")
+            keyboard.press_and_release('ctrl+k')
         elif direction == "Down":
-            keyboard.press_and_release("ctrl+j")
+            keyboard.press_and_release('ctrl+j')
         last_direction = direction
-
 
 determination_button.when_pressed = handle_determination
 function_button.when_pressed = handle_function
