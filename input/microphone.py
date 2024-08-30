@@ -32,6 +32,8 @@ def record_audio(stream, audio_buffer, chunk, channels, is_recording):
 
 
 def save_audio(audio_data, channels, rate, save_dir):
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
     with wave.open(audio_file_path, "wb") as wf:
         wf.setnchannels(channels)
         wf.setsampwidth(2)  # 16-bit audio
@@ -54,9 +56,11 @@ def transcription():
 def replyGPT(transcript):
     msg = """あなたには会話の文字起こしを読み、会話に対する返答を考えてもらいます。
     返答は4つ考えてもらい、それぞれ「中立系」、「肯定系」、「否定系」、「素直系」です。
-    「中立系」は話者の発言に対して、否定も肯定もしない返答で、「肯定系」、「否定系」はその名の通り、話者の発言に対して、肯定或いは否定を行います。
+    「中立系」は話者の発言に対して、否定も肯定もしない返答です。
+    ただし、会話の内容が質問文である場合、返答はその質問に対する回答としてください。
+    「肯定系」、「否定系」は話者の発言に対して、肯定或いは否定を行います。
     「素直系」は話者の発言に対して、「ありがとう」や「ごめんなさい」、「こんにちは」などの非常に単純な返答を行います。
-    それぞれの返答の内容は、30文字以内の文章で表してください。
+    それぞれの返答の内容は、50文字以内の文章で表してください。
     出力形式はJSONで、以下のフォーマットに沿ってください
     {
         "neutrality" : <ここに中立系の文章>,
@@ -91,10 +95,11 @@ def record_and_save_audio():
     RATE = 44100
     MAX_SECONDS = 30
     SAVE_DIR = "audio"
+    INPUT_DEVICE_INDEX = int(os.getenv("INPUT_DEVICE_INDEX",'0'))
 
     p = pyaudio.PyAudio()
     stream = p.open(
-        format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK
+        format=FORMAT, channels=CHANNELS, rate=RATE, input=True, input_device_index=INPUT_DEVICE_INDEX, frames_per_buffer=CHUNK
     )
 
     audio_buffer = deque(maxlen=int(RATE / CHUNK * MAX_SECONDS))
