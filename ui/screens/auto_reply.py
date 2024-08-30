@@ -32,13 +32,17 @@ class AutoReplyScreen(Screen):
         mes.option_list.clear_options()
 
     def action_cursor_up(self) -> None:
-        if self.focused is not None and self.focused.id == "list-reply":
+        if self.focused is None:
+            self.focused.highlighted = 0
+        elif self.focused.id == "list-reply":
             self.focused.highlighted -= 1
         else:
             self.focus_previous()
 
     def action_cursor_down(self) -> None:
-        if self.focused is not None and self.focused.id == "list-reply":
+        if self.focused is not None:
+            self.focused.highlighted = 0
+        elif self.focused.id == "list-reply":
             self.focused.highlighted += 1
         else:
             self.focus_next()
@@ -53,6 +57,7 @@ def handle_get_reply(app):
     global_replies = options
     list_reply.add_options(options)
     list_reply.focus()
+    list_reply.highlited = 0
 
 
 def handleButtonAutoReply(app, event) -> bool:
