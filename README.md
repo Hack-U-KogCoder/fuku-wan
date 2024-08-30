@@ -1,5 +1,8 @@
 # 腹話ロボット「ふくワン」
 
+<img width="480" alt="image" src="https://github.com/user-attachments/assets/d78c2bea-a146-4f90-8cfd-e8d77540ae58">
+
+
 ## ふくワンとは
 ```
 ごめんなさいが言えないあなたへ。
@@ -25,6 +28,9 @@
 ガラケーでよく見る入力形式です。
 「あかさたなはまらやわ」の子音の項目があり、押すたびに母音が変化します。
 
+<img width="480" alt="image" src="https://github.com/user-attachments/assets/54882adc-df1b-416d-934b-38dc7f45dcf5">
+
+
 ### プリセット入力
 
 事前にキーワードを入力し、好きな時にすぐに再生できる入力形式です。
@@ -38,6 +44,9 @@
 ```bash
 git clone https://github.com/Hack-U-KogCoder/fuku-wan.git
 cd fuku-wan
+
+# .envファイル作成
+
 # 初回のみ実行が必須
 ./setup.sh
 # 起動時に必要
@@ -45,8 +54,17 @@ cd fuku-wan
 python main.py
 ```
 
+### .envファイル
+
+```
+OPENAI_API_SECRET=<OpenAIのAPIキー>
+INPUT_DEVICE_INDEX=0
+```
+
 ## その他 (アピールポイント)
 
-- Gitを使った自動アップデート機能
+- 完全手作りのパペット
 - Textualを使った省リソースなTUI
 - ほとんどの機能をパペット内で完結 (自動返答はインターネット接続が必須です)
+- Gitを使った自動アップデート機能
+- かわいい声?
