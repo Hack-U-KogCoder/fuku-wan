@@ -11,6 +11,7 @@ class ModeChangeScreen(Screen):
         yield Header(show_clock=True)
         yield Button("マニュアル", id="btn-ManualMode")
         yield Button("AI応答", id="btn-AutoReplyMode")
+        yield Button("終了", id="btn-Exit", variant="error")
 
 
 def handleButtonModeChange(app, event) -> bool:
@@ -21,6 +22,8 @@ def handleButtonModeChange(app, event) -> bool:
             app.switch_mode("manual_input")
         case "btn-AutoReplyMode":
             app.switch_mode("auto_reply")
+        case "btn-Exit":
+            app.exit()
         case _:
             return False
     return True

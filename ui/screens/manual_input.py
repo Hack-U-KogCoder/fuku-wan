@@ -17,21 +17,21 @@ class Keyboard(Static):
 
     def compose(self) -> ComposeResult:
         tb = inputTables.table(0)
-        yield Button("←", id="btn-Left")
-        yield Button("▶", id="btn-Play")
-        yield Button("→", id="btn-Right")
+        yield Button("←", id="btn-Left", variant="primary")
+        yield Button("▶", id="btn-Play", variant="primary")
+        yield Button("→", id="btn-Right", variant="primary")
         for i in range(tb.rows):
             yield Button(tb.char(i, 0), id=f"btn-{i}")
-        yield Button("exit", id="btn-Exit")
-        yield Button("BS", id="btn-Bs")
-        yield Button("mode", id="btn-Mode")
+        yield Button("全削除", id="btn-Clear", variant="error")
+        yield Button("削除", id="btn-Bs", variant="warning")
+        yield Button("モード選択", id="btn-Mode", variant="success")
 
 
 DnTable = {
     "Left": "0",
     "Play": "1",
     "Right": "2",
-    "9": "Exit",
+    "9": "Clear",
     "10": "Bs",
     "11": "Mode",
 }
@@ -152,8 +152,8 @@ def handleButtonManualInput(app, event) -> bool:
             talk_text(input.value)
             input.clear()
 
-        case "btn-Exit":
-            app.exit()
+        case "btn-Clear":
+            input.clear()
         case "btn-Bs":
             input.action_delete_left()
         case "btn-Mode":
