@@ -5,10 +5,11 @@ TEXT_FILE = "input.txt"
 
 # openjtalk
 X_DIC = "/var/lib/mecab/dic/open-jtalk/naist-jdic"
-M_VOICE = "/usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice"
-R_SPEED = "0.7"
+# M_VOICE = "/usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice"
+M_VOICE = "/usr/share/hts-voice/mei/mei_bashful.htsvoice"
+R_SPEED = "1.1"
 OW_WAVFILE = "output.wav"
-
+TONE = "0.45"
 
 def talk_text(t):
     if t == "":
@@ -19,7 +20,8 @@ def talk_text(t):
     rspeed = ["-r", R_SPEED]
     vol = ["-jm", "1.8"]
     owoutwav = ["-ow", OW_WAVFILE]
-    cmd = open_jtalk + xdic + mvoice + rspeed + vol + owoutwav
+    tone = ["-a", TONE]
+    cmd = open_jtalk + xdic + mvoice + rspeed + vol + owoutwav + tone
 
     # open_jtalkコマンドの実行
     c = subprocess.Popen(
@@ -30,8 +32,10 @@ def talk_text(t):
     c.wait()
 
     # aplayを使って音声を再生
-    aplay = ["aplay", OW_WAVFILE]
-    wr = subprocess.run(aplay, capture_output=True, text=True)
+    aplay = ["aplay" , OW_WAVFILE]
+    tmpd = ["-D", "plughw:0"]
+    cmda = aplay + tmpd
+    wr = subprocess.run(cmda, capture_output=True, text=True)
 
 
 def main():

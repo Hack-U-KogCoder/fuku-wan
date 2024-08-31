@@ -99,7 +99,7 @@ def record_and_save_audio():
 
     p = pyaudio.PyAudio()
     stream = p.open(
-        format=FORMAT, channels=CHANNELS, rate=RATE, input=True, input_device_index=INPUT_DEVICE_INDEX, frames_per_buffer=CHUNK
+        format=FORMAT, channels=CHANNELS, rate=RATE, input=True, input_device_index=1, frames_per_buffer=CHUNK
     )
 
     audio_buffer = deque(maxlen=int(RATE / CHUNK * MAX_SECONDS))
