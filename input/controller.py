@@ -9,7 +9,7 @@ function_button = Button(27, bounce_time=0.01)
 
 center_x = 0.5
 center_y = 0.5
-dead_zone = 0.1
+dead_zone = 0.2
 
 last_direction = "Center"
 
