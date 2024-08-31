@@ -33,18 +33,24 @@ class AutoReplyScreen(Screen):
         self.query_one("#btn-GetReply").focus()
 
     def action_cursor_up(self) -> None:
-        if self.focused.highlighted is None:
-            self.focused.highlighted = 0
+        if self.focused is None:
+            pass
         elif self.focused.id == "list-reply":
-            self.focused.highlighted -= 1
+            if self.focused.highlighted is None:
+                self.focused.highlighted = 0
+            else:
+                self.focused.highlighted -= 1
         else:
             self.focus_previous()
 
     def action_cursor_down(self) -> None:
-        if self.focused.highlighted is None:
-            self.focused.highlighted = 0
+        if self.focused is None:
+            pass
         elif self.focused.id == "list-reply":
-            self.focused.highlighted += 1
+            if self.focused.highlighted is None:
+                self.focused.highlighted = 0
+            else:
+                self.focused.highlighted += 1
         else:
             self.focus_next()
 
